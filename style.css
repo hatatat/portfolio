@@ -1,0 +1,556 @@
+/* Общие настройки macOS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-attachment: fixed;
+    color: #1d1d1f;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased; /* Делает шрифт более гладким в macOS */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Делаем заголовки более плотными и современными, уменьшаем межбуквенное расстояние */
+.about-section h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em; /* Отрицательный трекинг делает крупные заголовки стильными */
+    color: #000000;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #0066cc;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+/* 3. Улучшаем читаемость основного текста */
+.bio {
+    font-size: 16px;
+    line-height: 1.65; /* Немного увеличили межстрочный интервал */
+    max-width: 720px;
+    color: #424245; /* Слегка смягчили черный цвет для снижения нагрузки на глаза */
+    letter-spacing: -0.01em;
+}
+
+/* 4. Блок проектов */
+.projects-section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    letter-spacing: -0.02em;
+}
+
+.project-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+
+/* 5. Подзаголовки (Задача, Путь решения, Итог) — делаем их строже */
+.case-step h4 {
+    margin: 0 0 6px 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* Для капса наоборот раздвигаем буквы */
+    color: #86868b;
+}
+
+.case-step p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1d1d1f;
+}
+
+/* 6. Комментарий автора */
+.author-comment {
+    background: rgba(0, 102, 204, 0.04);
+    border-left: 3px solid #0066cc;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: 30px;
+    color: #333333;
+}
+
+/* Верхняя панель macOS (Менюбар) */
+.macos-menubar {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 4px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000; /* Подняли выше рабочего стола */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 24px;
+}
+
+.menubar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.apple-logo {
+    font-size: 15px;
+    padding-right: 4px;
+}
+
+.menu-item {
+    color: #1d1d1f;
+    cursor: default;
+}
+.font-semibold { font-weight: 600; }
+
+/* Ссылка на Telegram в менюбаре */
+.tg-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1d1d1f;
+    text-decoration: none;
+    padding: 1px 8px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.tg-menu-link:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.icon-tg {
+    width: 13px;
+    height: 13px;
+    transform: rotate(-15deg);
+}
+
+.menubar-right {
+    font-variant-numeric: tabular-nums; /* Чтобы цифры часов не прыгали */
+}
+
+/* Контейнер для центрирования окна */
+.window-container {
+    padding: 50px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Окно приложения */
+/* Находишь этот блок в style.css */
+.macos-window {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    width: 100%;
+    
+    /* МЕНЯЕМ ТУТ: */
+    max-width: 1400px; /* Было 1100px. Можно поставить 1500px или даже 90%, если хочешь на весь экран */
+    
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+/* Шапка окна со светофором */
+.window-header {
+    background: rgba(246, 246, 246, 0.9);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    left: 16px;
+}
+
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.window-title {
+    margin: 0 auto;
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Контент внутри окна */
+.window-content {
+    padding: 40px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Разделитель */
+.separator {
+    border: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 40px 0;
+}
+
+/* Секция обо мне */
+.about-section h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #0066cc;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.bio {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 700px;
+    color: #3a3a3c;
+}
+
+/* Секция проектов */
+.projects-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* Двухколоночная карточка проекта */
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Левая колонка */
+.project-title {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+}
+
+.case-step {
+    margin-bottom: 20px;
+}
+
+.case-step h4 {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #86868b;
+}
+
+.case-step p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #1d1d1f;
+}
+
+.author-comment {
+    background: rgba(0, 102, 204, 0.05);
+    border-left: 3px solid #0066cc;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 25px;
+    color: #1d1d1f;
+}
+
+/* --- КАРУСЕЛЬ --- */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    height: 550px; /* Фиксируем общую высоту карусели для всех картинок! */
+    background: transparent; /* Приятный серый фон Apple для пустых зон */
+    border-radius: 8px;
+}
+.carousel-track-container {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    gap: 20px;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.photo-wrapper {
+    width: 100%;
+    height: 100%; /* Растягиваем обертку на всю высоту карусели */
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent; /* ТЕПЕРЬ ФОН ПРОЗРАЧНЫЙ */
+    box-shadow: none; /* Убираем жесткую внешнюю тень, если она создавала границы */
+}
+
+/* Находим блок с картинкой и приводим к такому виду */
+.portfolio-img {
+    width: 100%;
+    height: 550px; /* Высота должна совпадать с высотой карусели */
+    display: block;
+    
+    /* ВАРИАНТ А: Картинка вписывается целиком, лишнее заполняется фоном (без обрезки) */
+    object-fit: contain;
+}
+
+.portfolio-img:hover {
+    transform: scale(1.02);
+}
+
+/* Кнопки управления */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.carousel-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-button-prev { left: 16px; }
+.carousel-button-next { right: 16px; }
+
+.macos-icon {
+    font-size: 20px;
+    color: #1d1d1f;
+    font-weight: bold;
+}
+
+/* Точки-индикаторы */
+.carousel-indicators {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .window-content {
+        padding: 20px;
+    }
+    .carousel-button {
+        width: 32px;
+        height: 32px;
+    }
+    .carousel-track {
+        gap: 15px;
+    }
+}
+.about-container {
+    display: flex;
+    align-items: stretch; /* Растягивает фото по высоте текстового блока */
+    gap: 40px;            /* Расстояние между текстом и фото */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    flex: 2; /* Текст забирает ~70% ширины */
+}
+
+.profile-photo-wrapper {
+    flex: 1;          /* Фото забирает ~30% ширины */
+    max-width: 200px; /* Ограничение, чтобы не было слишком огромным */
+    min-width: 120px; /* Ограничение, чтобы не сжималось слишком сильно */
+    border-radius: 24px; /* Фирменное скругление Apple */
+    overflow: hidden;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполняет блок без искажения пропорций */
+    display: block;
+}
+
+/* На мобильных устройствах вернет фото над текстом */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .profile-photo-wrapper {
+        width: 160px;
+        height: 160px;
+    }
+}
+.desktop-screen {
+    position: fixed;
+    top: 24px; /* Начинается строго ПОД менюбаром */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 24px); /* Занимает оставшуюся высоту экрана */
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    z-index: 999; /* Чуть ниже менюбара */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Элемент иконки */
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* Эффект легкого нажатия при наведении */
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.desktop-icon:active {
+    transform: scale(0.95);
+}
+
+/* Сама плашка "файла" */
+.icon-file-preview {
+    width: 70px;
+    height: 85px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+}
+
+/* Красный ярлычок "PDF" в углу для реализма */
+.icon-file-preview::after {
+    content: 'PDF';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: #ff3b30; /* Красный цвет Apple */
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 4px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+}
+
+/* Иконка текста внутри файла */
+.pdf-icon {
+    width: 32px;
+    height: 32px;
+    color: #8e8e93;
+    stroke-width: 1.5px;
+    margin-bottom: 10px;
+}
+
+/* Подпись под иконкой */
+.icon-label {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Тень, чтобы текст читался на любом фоне */
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Класс анимации затухания (активируется через JS) */
+.desktop-screen.fade-out {
+    opacity: 0;
+    transform: scale(1.05); /* Легкое масштабирование «вглубь» экрана при открытии */
+    pointer-events: none;
+}
