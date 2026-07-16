@@ -3,211 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио | Фотограф & Продюсер</title>
+    <title>Никита Гавров | Портфолио</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Подключаем швейцарские шрифты с поддержкой кириллицы -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="desktop-screen" id="desktopScreen">
-        <div class="desktop-icon" onclick="openPortfolio()">
-            <div class="icon-file-preview">
-                <i data-lucide="file-text" class="pdf-icon"></i>
-            </div>
-            <span class="icon-label">Портфолио_2026.pdf</span>
-        </div>
-    </div>
 
-    <div class="macos-menubar">
-        <div class="menubar-left">
-            <a href="https://t.me/tvoyovsyo" target="_blank" class="tg-menu-link" title="Написать в Telegram">
-                <i data-lucide="send" class="icon-tg"></i>
-                <span>Telegram</span>
-            </a>
-        </div>
+    <!-- Главный контейнер-слайдер -->
+    <div class="swiss-viewport">
         
-        <div class="menubar-center">
-            <span id="macos-clock">00:00</span>
-        </div>
-        
-        <div class="menubar-right">
-            </div>
-    </div>
-
-    <div class="window-container">
-        <main class="macos-window">
-            
-            <div class="window-header">
-                <div class="traffic-lights">
-                    <span class="light red"></span>
-                    <span class="light yellow"></span>
-                    <span class="light green"></span>
+        <!-- Слой 1: Стартовый экран (О Себе / Портфолио) -->
+        <div class="swiss-screen active" id="screen-start">
+            <div class="split-pane pane-left" id="trigger-about" onclick="goToAbout()">
+                <div class="pane-content">
+                    <span class="mono-label">01 / КТО Я</span>
+                    <h1 class="huge-title">О СЕБЕ</h1>
                 </div>
-                <div class="window-title">Гавров Никита — Портфолио</div>
             </div>
-
-            <div class="window-content">
-                
-                <section class="about-section">
-    <div class="about-container">
-        
-        <div class="profile-info">
-            <h1>Гавров Никита</h1>
-            <p class="subtitle">Фотограф & Продюсер</p>
-            <p class="bio">
-                Создаю визуальную часть вашего бренда. Специализируюсь на продюссировании и создании коммерческой фотографии. Сочетаю четкий менеджмент съёмочного процесса и творческий подход к вашему продукту.
-            </p>
+            <div class="split-pane pane-right" id="trigger-portfolio" onclick="goToPortfolioChoice()">
+                <div class="pane-content">
+                    <span class="mono-label">02 / РАБОТЫ</span>
+                    <h1 class="huge-title">ПОРТФОЛИО</h1>
+                </div>
+            </div>
         </div>
 
-        <div class="profile-photo-wrapper">
-            <img src="images/avatar.jpg" alt="Гавров Никита" class="profile-avatar">
-        </div>
-
-    </div>
-</section>
-
-                <hr class="separator">
-
-                <section class="projects-section">
-                    <h2>Кейсы и проекты</h2>
-
-                    <div class="project-card">
-                        
-                        <div class="project-info">
-                            <h3 class="project-title">Съемка для бренда одежды "Concept"</h3>
-                            
-                            <div class="case-step">
-                                <h4>Задача</h4>
-                                <p>Разработать концепцию и отснять лукбук новой коллекции. Важно было подчеркнуть премиальное качество ткани и фактуру материалов при жестком студийном свете.</p>
-                            </div>
-
-                            <div class="case-step">
-                                <h4>Путь решения</h4>
-                                <p>Организован кастинг моделей, подобрана студия с циклорамой. Использована схема с глубокими тенями и акцентными бликами, чтобы передать объем и геометрию кроя.</p>
-                            </div>
-
-                            <div class="case-step">
-                                <h4>Итог</h4>
-                                <p>30 готовых кадров для каталога и баннеров, запуск рекламной кампании в срок, рост конверсии карточек товара на 25%.</p>
-                            </div>
-
-                            <div class="author-comment">
-                                <strong>Комментарий продюсера:</strong> Сложнее всего было настроить геометрию светового пятна, но правильные рефлекторы решили задачу идеально.
-                            </div>
-                        </div>
-
-                        <div class="project-gallery carousel" data-carousel-id="project1">
-                            <div class="carousel-track-container">
-                                <div class="carousel-track">
-                                    <div class="carousel-slide active">
-                                        <div class="photo-wrapper">
-                                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Пример работы 1" class="portfolio-img">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <div class="photo-wrapper">
-                                            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1000&auto=format&fit=crop" alt="Пример работы 2" class="portfolio-img">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <div class="photo-wrapper">
-                                            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop" alt="Пример работы 3" class="portfolio-img">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <button class="carousel-button carousel-button-prev" onclick="prevSlide(this)">
-                                <span class="macos-icon">⟨</span>
-                            </button>
-                            <button class="carousel-button carousel-button-next" onclick="nextSlide(this)">
-                                <span class="macos-icon">⟩</span>
-                            </button>
-
-                            <div class="carousel-indicators">
-                                <span class="dot active"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                            </div>
-                        </div>
-
+        <!-- Слой 2A: Экран "О себе" (Появляется справа от зафиксированного заголовка) -->
+        <div class="swiss-screen" id="screen-about">
+            <div class="split-pane pane-left-fixed" onclick="resetToStart()">
+                <div class="pane-content">
+                    <span class="mono-label">← НАЗАД</span>
+                    <h2 class="fixed-title">О СЕБЕ</h2>
+                </div>
+            </div>
+            <div class="split-pane pane-right-content">
+                <div class="about-text-container">
+                    <p class="mono-sub">НИКИТА ГАВРОВ // ФОТОГРАФ & ПРОДЮСЕР</p>
+                    <p class="about-paragraph">
+                        Создаю визуальную часть вашего бренда. Специализируюсь на продюсировании и создании коммерческой фотографии. Сочетаю чёткий менеджмент съёмочного процесса и творческий подход к вашему продукту.
+                    </p>
+                    <p class="about-paragraph text-muted">
+                        Сложные световые схемы, выверенная геометрия кадра и перфекционизм в ретуши. Работаю с проектами любой сложности от идеи до финального рендера.
+                    </p>
+                    <div class="contact-block">
+                        <span class="mono-label">СВЯЗЬ:</span>
+                        <a href="https://t.me/tvoyovsyo" target="_blank" class="swiss-link">TELEGRAM →</a>
                     </div>
-                    </section>
+                </div>
             </div>
-        </main>
+        </div>
+
+        <!-- Слой 2Б: Экран выбора (По направлениям / По проектам) -->
+        <div class="swiss-screen" id="screen-portfolio-choice">
+            <div class="split-pane pane-left-fixed" onclick="resetToStart()">
+                <div class="pane-content">
+                    <span class="mono-label">← ГЛАВНАЯ</span>
+                    <h2 class="fixed-title">ПОРТФОЛИО</h2>
+                </div>
+            </div>
+            <div class="split-pane pane-right-choice">
+                <div class="choice-container">
+                    <div class="choice-item" onclick="goToCategory('directions')">
+                        <span class="mono-label">02.A</span>
+                        <h2 class="medium-title">ПО НАПРАВЛЕНИЯМ</h2>
+                    </div>
+                    <div class="choice-item" onclick="goToCategory('projects')">
+                        <span class="mono-label">02.B</span>
+                        <h2 class="medium-title">ПО ПРОЕКТАМ</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слой 3А: Список направлений -->
+        <div class="swiss-screen" id="screen-directions">
+            <div class="split-pane pane-left-fixed" onclick="goBackToChoice()">
+                <div class="pane-content">
+                    <span class="mono-label">← ВЫБОР</span>
+                    <h2 class="fixed-title-small">НАПРАВЛЕНИЯ</h2>
+                </div>
+            </div>
+            <div class="split-pane pane-right-content">
+                <ul class="swiss-list">
+                    <li class="list-item"><span>FASHION</span><span class="mono-num">[01]</span></li>
+                    <li class="list-item"><span>MERCH</span><span class="mono-num">[02]</span></li>
+                    <li class="list-item"><span>TECH</span><span class="mono-num">[03]</span></li>
+                    <li class="list-item"><span>PRECIOUS</span><span class="mono-num">[04]</span></li>
+                    <li class="list-item"><span>COMMERCIAL</span><span class="mono-num">[05]</span></li>
+                    <li class="list-item"><span>RETOUCH</span><span class="mono-num">[06]</span></li>
+                    <li class="list-item"><span>VIDEO</span><span class="mono-num">[07]</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Слой 3Б: Список проектов -->
+        <div class="swiss-screen" id="screen-projects">
+            <div class="split-pane pane-left-fixed" onclick="goBackToChoice()">
+                <div class="pane-content">
+                    <span class="mono-label">← ВЫБОР</span>
+                    <h2 class="fixed-title-small">ПРОЕКТЫ</h2>
+                </div>
+            </div>
+            <div class="split-pane pane-right-content">
+                <ul class="swiss-list">
+                    <li class="list-item"><span>CONCEPT BRAND</span><span class="mono-num">2026</span></li>
+                    <li class="list-item"><span>GUARCHIBAO PACKAGING</span><span class="mono-num">2026</span></li>
+                    <li class="list-item"><span>TECH REELS</span><span class="mono-num">2025</span></li>
+                    <li class="list-item"><span>BIJOUTERIE MACRO</span><span class="mono-num">2025</span></li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Функция для анимации открытия портфолио
-function openPortfolio() {
-    const desktop = document.getElementById('desktopScreen');
-    desktop.classList.add('fade-out');
-    
-    // Полностью удаляем рабочий стол из видимости после завершения анимации
-    setTimeout(() => {
-        desktop.style.display = 'none';
-    }, 600); 
-}
-        // Инициализация иконки Telegram
-        lucide.createIcons();
-
-        // Живые часы в стиле macOS (Чт 15:23)
-        function updateMacClock() {
-            const now = new Date();
-            const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-            const dayName = days[now.getDay()];
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('macos-clock').textContent = `${dayName} ${hours}:${minutes}`;
+        // Простая и быстрая логика переключения экранов
+        function changeScreen(targetId) {
+            // Убираем активный класс у всех экранов
+            document.querySelectorAll('.swiss-screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            // Добавляем активный класс целевому экрану
+            document.getElementById(targetId).classList.add('active');
         }
-        setInterval(updateMacClock, 1000);
-        updateMacClock();
 
-        // Логика карусели
-        function prevSlide(button) {
-            const carousel = button.closest('.carousel');
-            const track = carousel.querySelector('.carousel-track');
-            const currentSlide = track.querySelector('.active');
-            const prevSlide = currentSlide.previousElementSibling;
-            
-            if (prevSlide) {
-                currentSlide.classList.remove('active');
-                prevSlide.classList.add('active');
-                updateCarousel(carousel, prevSlide);
+        function goToAbout() {
+            changeScreen('screen-about');
+        }
+
+        function goToPortfolioChoice() {
+            changeScreen('screen-portfolio-choice');
+        }
+
+        function resetToStart() {
+            changeScreen('screen-start');
+        }
+
+        function goToCategory(type) {
+            if (type === 'directions') {
+                changeScreen('screen-directions');
+            } else {
+                changeScreen('screen-projects');
             }
         }
 
-        function nextSlide(button) {
-            const carousel = button.closest('.carousel');
-            const track = carousel.querySelector('.carousel-track');
-            const currentSlide = track.querySelector('.active');
-            const nextSlide = currentSlide.nextElementSibling;
-            
-            if (nextSlide) {
-                currentSlide.classList.remove('active');
-                nextSlide.classList.add('active');
-                updateCarousel(carousel, nextSlide);
-            }
-        }
-
-        function updateCarousel(carousel, currentSlide) {
-            const track = carousel.querySelector('.carousel-track');
-            const dotsContainer = carousel.querySelector('.carousel-indicators');
-            const dots = dotsContainer.querySelectorAll('.dot');
-            const currentDot = dotsContainer.querySelector('.active');
-            const slides = track.querySelectorAll('.carousel-slide');
-            
-            const currentSlideIndex = Array.from(slides).indexOf(currentSlide);
-            
-            const targetSlideWidth = currentSlide.offsetWidth;
-            const gap = parseInt(getComputedStyle(track).gap) || 0;
-            const scrollAmount = (targetSlideWidth + gap) * currentSlideIndex;
-            track.style.transform = `translateX(-${scrollAmount}px)`;
-            
-            currentDot.classList.remove('active');
-            dots[currentSlideIndex].classList.add('active');
+        function goBackToChoice() {
+            changeScreen('screen-portfolio-choice');
         }
     </script>
 </body>
