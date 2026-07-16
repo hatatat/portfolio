@@ -13,6 +13,9 @@
 </head>
 <body>
 
+    <!-- Контейнер для фоновых превью при наведении (эффект Hover Preview) -->
+    <div class="hover-preview-bg" id="hover-preview-container"></div>
+
     <!-- Главный контейнер-слайдер -->
     <div class="swiss-viewport">
         
@@ -32,7 +35,7 @@
             </div>
         </div>
 
-        <!-- Слой 2A: Экран "О себе" (Появляется справа от зафиксированного заголовка) -->
+        <!-- Слой 2A: Экран "О себе" -->
         <div class="swiss-screen" id="screen-about">
             <div class="split-pane pane-left-fixed" onclick="resetToStart()">
                 <div class="pane-content">
@@ -79,7 +82,7 @@
             </div>
         </div>
 
-        <!-- Слой 3А: Список направлений -->
+        <!-- Слой 3А: Список направлений с Hover-эффектами -->
         <div class="swiss-screen" id="screen-directions">
             <div class="split-pane pane-left-fixed" onclick="goBackToChoice()">
                 <div class="pane-content">
@@ -89,13 +92,37 @@
             </div>
             <div class="split-pane pane-right-content">
                 <ul class="swiss-list">
-                    <li class="list-item"><span>FASHION</span><span class="mono-num">[01]</span></li>
-                    <li class="list-item"><span>MERCH</span><span class="mono-num">[02]</span></li>
-                    <li class="list-item"><span>TECH</span><span class="mono-num">[03]</span></li>
-                    <li class="list-item"><span>PRECIOUS</span><span class="mono-num">[04]</span></li>
-                    <li class="list-item"><span>COMMERCIAL</span><span class="mono-num">[05]</span></li>
-                    <li class="list-item"><span>RETOUCH</span><span class="mono-num">[06]</span></li>
-                    <li class="list-item"><span>VIDEO</span><span class="mono-num">[07]</span></li>
+                    <!-- Добавили data-preview для подгрузки изображений при наведении -->
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('FASHION')">
+                        <span>FASHION</span><span class="mono-num">[01]</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('MERCH')">
+                        <span>MERCH</span><span class="mono-num">[02]</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('TECH')">
+                        <span>TECH</span><span class="mono-num">[03]</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('PRECIOUS')">
+                        <span>PRECIOUS</span><span class="mono-num">[04]</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('COMMERCIAL')">
+                        <span>COMMERCIAL</span><span class="mono-num">[05]</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('RETOUCH')">
+                        <span>RETOUCH</span><span class="mono-num">[06]</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -110,40 +137,105 @@
             </div>
             <div class="split-pane pane-right-content">
                 <ul class="swiss-list">
-                    <li class="list-item"><span>CONCEPT BRAND</span><span class="mono-num">2026</span></li>
-                    <li class="list-item"><span>GUARCHIBAO PACKAGING</span><span class="mono-num">2026</span></li>
-                    <li class="list-item"><span>TECH REELS</span><span class="mono-num">2025</span></li>
-                    <li class="list-item"><span>BIJOUTERIE MACRO</span><span class="mono-num">2025</span></li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('CONCEPT BRAND')">
+                        <span>CONCEPT BRAND</span><span class="mono-num">2026</span>
+                    </li>
+                    <li class="list-item" 
+                        data-preview="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"
+                        onclick="openGallery('GUARCHIBAO')">
+                        <span>GUARCHIBAO PACKAGING</span><span class="mono-num">2026</span>
+                    </li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Слой 4: Полноценный Артбук-галерея (Швейцарская журнальная верстка) -->
+        <div class="swiss-screen" id="screen-gallery">
+            <div class="split-pane pane-left-fixed" onclick="goBackToCategories()">
+                <div class="pane-content">
+                    <span class="mono-label">← НАЗАД</span>
+                    <h2 class="fixed-title-small" id="gallery-title">FASHION</h2>
+                </div>
+            </div>
+            
+            <!-- Правая часть скроллится вертикально как стильный журнал -->
+            <div class="split-pane pane-right-content scrollable-gallery">
+                <div class="editorial-grid">
+                    
+                    <!-- Блок 1: Огромный горизонтальный кадр-манифест на всю ширину -->
+                    <div class="grid-item span-12">
+                        <div class="img-container aspect-16-9">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop" alt="Hero shot">
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-left">01 // HERO SHOT</span>
+                            <span class="meta-right">STUDIO LIGHTING</span>
+                        </div>
+                    </div>
+
+                    <!-- Блок 2: Технические спецификации съёмки (для веса и авторитетности) -->
+                    <div class="grid-item span-4 technical-details">
+                        <span class="mono-label">SPECIFICATION:</span>
+                        <p class="tech-spec-line"><strong>CLIENT:</strong> INDEPENDENT</p>
+                        <p class="tech-spec-line"><strong>YEAR:</strong> 2026</p>
+                        <p class="tech-spec-line"><strong>LIGHT:</strong> PROFOTO D2 + OCTABOX 5'</p>
+                        <p class="tech-spec-line"><strong>CAMERA:</strong> HASSELBLAD X2D</p>
+                    </div>
+
+                    <!-- Блок 3: Текстовый комментарий в швейцарском стиле -->
+                    <div class="grid-item span-8 commentary-text">
+                        <p class="editorial-comment">
+                            «В этом проекте ключевой задачей была передача сложной матовой текстуры материалов. Мы отказались от мягкого рассеянного заполнения в пользу одного жесткого источника, пущенного по диагонали, чтобы подчеркнуть геометрию и складки формы».
+                        </p>
+                    </div>
+
+                    <!-- Блок 4: Асимметричный диптих (Вертикальный кадр побольше + Горизонтальный поменьше) -->
+                    <div class="grid-item span-7">
+                        <div class="img-container aspect-3-4">
+                            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1200&auto=format&fit=crop" alt="Portrait shot">
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-left">02 // PORTRAIT DETAIL</span>
+                            <span class="meta-right">RETOUCH FOCUS</span>
+                        </div>
+                    </div>
+
+                    <div class="grid-item span-5 align-self-end">
+                        <div class="img-container aspect-square">
+                            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1000&auto=format&fit=crop" alt="Product shot">
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-left">03 // TEXTURE GEOMETRY</span>
+                            <span class="meta-right">HARD LIGHT</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // Простая и быстрая логика переключения экранов
+        // Переключение экранов
         function changeScreen(targetId) {
-            // Убираем активный класс у всех экранов
             document.querySelectorAll('.swiss-screen').forEach(screen => {
                 screen.classList.remove('active');
             });
-            // Добавляем активный класс целевому экрану
             document.getElementById(targetId).classList.add('active');
         }
 
-        function goToAbout() {
-            changeScreen('screen-about');
-        }
-
-        function goToPortfolioChoice() {
-            changeScreen('screen-portfolio-choice');
-        }
-
-        function resetToStart() {
-            changeScreen('screen-start');
-        }
+        function goToAbout() { changeScreen('screen-about'); }
+        function goToPortfolioChoice() { changeScreen('screen-portfolio-choice'); }
+        function resetToStart() { changeScreen('screen-start'); }
+        
+        // Храним тип открытой вкладки (directions или projects), чтобы кнопка Назад понимала куда возвращаться
+        let currentCategoryType = 'directions';
 
         function goToCategory(type) {
+            currentCategoryType = type;
             if (type === 'directions') {
                 changeScreen('screen-directions');
             } else {
@@ -151,9 +243,45 @@
             }
         }
 
-        function goBackToChoice() {
-            changeScreen('screen-portfolio-choice');
+        function goBackToChoice() { changeScreen('screen-portfolio-choice'); }
+
+        // --- ЛОГИКА ГАЛЕРЕИ (АРТБУКА) ---
+        function openGallery(title) {
+            document.getElementById('gallery-title').textContent = title;
+            changeScreen('screen-gallery');
+            // Сбрасываем скролл галереи вверх при открытии
+            document.querySelector('.scrollable-gallery').scrollTop = 0;
+            // Убираем фоновое изображение при переходе в галерею
+            document.getElementById('hover-preview-container').style.opacity = 0;
         }
+
+        function goBackToCategories() {
+            if (currentCategoryType === 'directions') {
+                changeScreen('screen-directions');
+            } else {
+                changeScreen('screen-projects');
+            }
+        }
+
+        // --- ЛОГИКА HOVER PREVIEW (Проявление картинки на фоне при наведении) ---
+        const previewContainer = document.getElementById('hover-preview-container');
+        const listItems = document.querySelectorAll('.list-item');
+
+        listItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const imgUrl = item.getAttribute('data-preview');
+                if (imgUrl) {
+                    // Создаем временное фоновое изображение
+                    previewContainer.style.backgroundImage = `url('${imgUrl}')`;
+                    previewContainer.style.opacity = 0.08; /* Очень легкое, деликатное проявление, чтобы не слепило глаза */
+                    previewContainer.style.filter = 'grayscale(100%)'; /* Делаем превью черно-белым в духе минимализма */
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                previewContainer.style.opacity = 0;
+            });
+        });
     </script>
 </body>
 </html>
