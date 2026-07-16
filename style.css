@@ -1,556 +1,289 @@
-/* Общие настройки macOS */
-body {
+/* Базовый сброс и швейцарские настройки */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-    background-attachment: fixed;
-    color: #1d1d1f;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased; /* Делает шрифт более гладким в macOS */
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* 2. Делаем заголовки более плотными и современными, уменьшаем межбуквенное расстояние */
-.about-section h1 {
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.03em; /* Отрицательный трекинг делает крупные заголовки стильными */
-    color: #000000;
-}
-
-.subtitle {
-    font-size: 18px;
-    color: #0066cc;
-    margin-top: 0;
-    margin-bottom: 24px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-}
-
-/* 3. Улучшаем читаемость основного текста */
-.bio {
-    font-size: 16px;
-    line-height: 1.65; /* Немного увеличили межстрочный интервал */
-    max-width: 720px;
-    color: #424245; /* Слегка смягчили черный цвет для снижения нагрузки на глаза */
-    letter-spacing: -0.01em;
-}
-
-/* 4. Блок проектов */
-.projects-section h2 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 35px;
-    letter-spacing: -0.02em;
-}
-
-.project-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-    color: #000000;
-}
-
-/* 5. Подзаголовки (Задача, Путь решения, Итог) — делаем их строже */
-.case-step h4 {
-    margin: 0 0 6px 0;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em; /* Для капса наоборот раздвигаем буквы */
-    color: #86868b;
-}
-
-.case-step p {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #1d1d1f;
-}
-
-/* 6. Комментарий автора */
-.author-comment {
-    background: rgba(0, 102, 204, 0.04);
-    border-left: 3px solid #0066cc;
-    padding: 14px 18px;
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 1.55;
-    margin-top: 30px;
-    color: #333333;
-}
-
-/* Верхняя панель macOS (Менюбар) */
-.macos-menubar {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 4px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10000; /* Подняли выше рабочего стола */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-sizing: border-box;
-    height: 24px;
 }
 
-.menubar-left {
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Оболочка для слайд-экранов */
+.swiss-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Общий стиль для каждого экрана (слайда) */
+.swiss-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
-    gap: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(30px); /* Легкий сдвиг вправо при скрытии */
 }
 
-.apple-logo {
-    font-size: 15px;
-    padding-right: 4px;
+/* Активный экран плавно проявляется и сдвигается на свое место */
+.swiss-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
-.menu-item {
-    color: #1d1d1f;
+/* Две половины экрана */
+.split-pane {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+    position: relative;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+/* Вертикальный разделитель посередине */
+.pane-left {
+    border-right: 1px solid #000000;
+}
+
+/* Статичная левая зафиксированная панель после перехода */
+.pane-left-fixed {
+    flex: 0 0 35%; /* Занимает 35% ширины экрана */
+    border-right: 1px solid #000000;
+    cursor: pointer;
+    background-color: #f9f9f9; /* Еле заметный серый оттенок для структуры */
+}
+
+.pane-left-fixed:hover {
+    background-color: #f1f1f1;
+}
+
+/* Правая контентная панель */
+.pane-right-content, .pane-right-choice {
+    flex: 0 0 65%;
     cursor: default;
 }
-.font-semibold { font-weight: 600; }
 
-/* Ссылка на Telegram в менюбаре */
-.tg-menu-link {
+/* Шрифты и Типографика */
+.mono-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 20px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+/* Главные заголовки О СЕБЕ и ПОРТФОЛИО */
+.huge-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(32px, 5vw, 72px); /* Адаптивный размер */
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: #000000;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.4s ease;
+}
+
+/* Фиксированные заголовки слева */
+.fixed-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(24px, 3.5vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.fixed-title-small {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(18px, 2.5vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+}
+
+/* Заголовки По направлениям / По проектам */
+.medium-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-top: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* --- ИНТЕРАКТИВ ПРИ НАВЕДЕНИИ НА ГЛАВНЫЕ КНОПКИ --- */
+
+/* Наведение на левую панель "О СЕБЕ" */
+#screen-start:has(.pane-left:hover) .pane-right {
+    filter: blur(2px) opacity(0.3); /* Замыливаем и приглушаем вторую половину */
+}
+
+#screen-start .pane-left:hover .huge-title {
+    transform: scale(1.05) rotate(-0.5deg); /* Увеличиваем и слегка наклоняем в духе швейцарского плаката */
+    letter-spacing: -0.02em;
+}
+
+/* Наведение на правую панель "ПОРТФОЛИО" */
+#screen-start:has(.pane-right:hover) .pane-left {
+    filter: blur(2px) opacity(0.3);
+}
+
+#screen-start .pane-right:hover .huge-title {
+    transform: scale(1.05) rotate(0.5deg);
+    letter-spacing: -0.02em;
+}
+
+/* Наведение на выбор внутри портфолио */
+.choice-container {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #1d1d1f;
-    text-decoration: none;
-    padding: 1px 8px;
-    border-radius: 4px;
-    transition: background 0.2s ease;
-}
-
-.tg-menu-link:hover {
-    background: rgba(0, 0, 0, 0.08);
-}
-
-.icon-tg {
-    width: 13px;
-    height: 13px;
-    transform: rotate(-15deg);
-}
-
-.menubar-right {
-    font-variant-numeric: tabular-nums; /* Чтобы цифры часов не прыгали */
-}
-
-/* Контейнер для центрирования окна */
-.window-container {
-    padding: 50px 20px 40px 20px;
-    display: flex;
+    flex-direction: column;
+    gap: 60px;
     justify-content: center;
-    align-items: center;
+    height: 100%;
 }
 
-/* Окно приложения */
-/* Находишь этот блок в style.css */
-.macos-window {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    width: 100%;
-    
-    /* МЕНЯЕМ ТУТ: */
-    max-width: 1400px; /* Было 1100px. Можно поставить 1500px или даже 90%, если хочешь на весь экран */
-    
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    overflow: hidden;
+.choice-item {
+    cursor: pointer;
 }
 
-/* Шапка окна со светофором */
-.window-header {
-    background: rgba(246, 246, 246, 0.9);
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    position: relative;
+.choice-item:hover .medium-title {
+    transform: translateX(15px); /* Сдвиг вправо при наведении */
+    color: #000000;
 }
 
-.traffic-lights {
-    display: flex;
-    gap: 8px;
-    position: absolute;
-    left: 16px;
+.choice-item:hover .mono-label {
+    color: #000000;
 }
 
-.light {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
+/* Контент страницы "О себе" */
+.about-text-container {
+    max-width: 600px;
 }
-.red { background-color: #ff5f56; }
-.yellow { background-color: #ffbd2e; }
-.green { background-color: #27c93f; }
 
-.window-title {
-    margin: 0 auto;
+.mono-sub {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    color: #666;
     font-weight: 500;
-}
-
-/* Контент внутри окна */
-.window-content {
-    padding: 40px;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-/* Разделитель */
-.separator {
-    border: 0;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 40px 0;
-}
-
-/* Секция обо мне */
-.about-section h1 {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    letter-spacing: -0.5px;
-}
-
-.subtitle {
-    font-size: 18px;
-    color: #0066cc;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.bio {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 700px;
-    color: #3a3a3c;
-}
-
-/* Секция проектов */
-.projects-section h2 {
-    font-size: 24px;
-    font-weight: 600;
     margin-bottom: 30px;
+    letter-spacing: 0.05em;
 }
 
-/* Двухколоночная карточка проекта */
-.project-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 60px;
-}
-
-/* Левая колонка */
-.project-title {
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #1d1d1f;
-}
-
-.case-step {
-    margin-bottom: 20px;
-}
-
-.case-step h4 {
-    margin: 0 0 6px 0;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #86868b;
-}
-
-.case-step p {
-    margin: 0;
-    font-size: 15px;
+.about-paragraph {
+    font-size: clamp(16px, 1.8vw, 22px);
     line-height: 1.5;
-    color: #1d1d1f;
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
 }
 
-.author-comment {
-    background: rgba(0, 102, 204, 0.05);
-    border-left: 3px solid #0066cc;
-    padding: 12px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-top: 25px;
-    color: #1d1d1f;
+.text-muted {
+    color: #666666;
 }
 
-/* --- КАРУСЕЛЬ --- */
-.carousel {
-    position: relative;
-    overflow: hidden;
-    height: 550px; /* Фиксируем общую высоту карусели для всех картинок! */
-    background: transparent; /* Приятный серый фон Apple для пустых зон */
-    border-radius: 8px;
-}
-.carousel-track-container {
-    position: relative;
-    width: 100%;
-}
-
-.carousel-track {
+.contact-block {
+    margin-top: 50px;
+    border-top: 1px solid #000000;
+    padding-top: 20px;
     display: flex;
-    transition: transform 0.3s ease-in-out;
+    align-items: center;
     gap: 20px;
 }
 
-.carousel-slide {
-    flex: 0 0 100%;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+.contact-block .mono-label {
+    margin-bottom: 0;
 }
 
-.carousel-slide.active {
-    opacity: 1;
+.swiss-link {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
 }
 
-.photo-wrapper {
-    width: 100%;
-    height: 100%; /* Растягиваем обертку на всю высоту карусели */
-    border-radius: 8px;
-    overflow: hidden;
-    background: transparent; /* ТЕПЕРЬ ФОН ПРОЗРАЧНЫЙ */
-    box-shadow: none; /* Убираем жесткую внешнюю тень, если она создавала границы */
+.swiss-link:hover {
+    border-color: #000000;
 }
 
-/* Находим блок с картинкой и приводим к такому виду */
-.portfolio-img {
-    width: 100%;
-    height: 550px; /* Высота должна совпадать с высотой карусели */
-    display: block;
-    
-    /* ВАРИАНТ А: Картинка вписывается целиком, лишнее заполняется фоном (без обрезки) */
-    object-fit: contain;
-}
-
-.portfolio-img:hover {
-    transform: scale(1.02);
-}
-
-/* Кнопки управления */
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border: none;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-.carousel-button:hover {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.carousel-button-prev { left: 16px; }
-.carousel-button-next { right: 16px; }
-
-.macos-icon {
-    font-size: 20px;
-    color: #1d1d1f;
-    font-weight: bold;
-}
-
-/* Точки-индикаторы */
-.carousel-indicators {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.dot.active {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .project-card {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    .window-content {
-        padding: 20px;
-    }
-    .carousel-button {
-        width: 32px;
-        height: 32px;
-    }
-    .carousel-track {
-        gap: 15px;
-    }
-}
-.about-container {
-    display: flex;
-    align-items: stretch; /* Растягивает фото по высоте текстового блока */
-    gap: 40px;            /* Расстояние между текстом и фото */
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.profile-info {
-    flex: 2; /* Текст забирает ~70% ширины */
-}
-
-.profile-photo-wrapper {
-    flex: 1;          /* Фото забирает ~30% ширины */
-    max-width: 200px; /* Ограничение, чтобы не было слишком огромным */
-    min-width: 120px; /* Ограничение, чтобы не сжималось слишком сильно */
-    border-radius: 24px; /* Фирменное скругление Apple */
-    overflow: hidden;
-}
-
-.profile-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Картинка заполняет блок без искажения пропорций */
-    display: block;
-}
-
-/* На мобильных устройствах вернет фото над текстом */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 24px;
-    }
-    .profile-photo-wrapper {
-        width: 160px;
-        height: 160px;
-    }
-}
-.desktop-screen {
-    position: fixed;
-    top: 24px; /* Начинается строго ПОД менюбаром */
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 24px); /* Занимает оставшуюся высоту экрана */
-    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-    z-index: 999; /* Чуть ниже менюбара */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Элемент иконки */
-.desktop-icon {
+/* Швейцарские Списки (Направления и Проекты) */
+.swiss-list {
+    list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.2s ease;
-    padding: 15px;
-    border-radius: 12px;
-}
-
-/* Эффект легкого нажатия при наведении */
-.desktop-icon:hover {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.desktop-icon:active {
-    transform: scale(0.95);
-}
-
-/* Сама плашка "файла" */
-.icon-file-preview {
-    width: 70px;
-    height: 85px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 6px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    display: flex;
     justify-content: center;
+    height: 100%;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 700;
+    cursor: pointer;
+    transition: padding-left 0.3s ease, border-color 0.3s ease;
 }
 
-/* Красный ярлычок "PDF" в углу для реализма */
-.icon-file-preview::after {
-    content: 'PDF';
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    background: #ff3b30; /* Красный цвет Apple */
-    color: white;
-    font-size: 9px;
-    font-weight: 800;
-    padding: 2px 4px;
-    border-radius: 3px;
-    letter-spacing: 0.5px;
+.list-item:hover {
+    padding-left: 20px;
+    border-color: #000000;
 }
 
-/* Иконка текста внутри файла */
-.pdf-icon {
-    width: 32px;
-    height: 32px;
-    color: #8e8e93;
-    stroke-width: 1.5px;
-    margin-bottom: 10px;
+.mono-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: #888888;
 }
 
-/* Подпись под иконкой */
-.icon-label {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 500;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Тень, чтобы текст читался на любом фоне */
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-/* Класс анимации затухания (активируется через JS) */
-.desktop-screen.fade-out {
-    opacity: 0;
-    transform: scale(1.05); /* Легкое масштабирование «вглубь» экрана при открытии */
-    pointer-events: none;
+/* Адаптивность для мобильных телефонов */
+@media (max-width: 768px) {
+    .swiss-screen {
+        flex-direction: column;
+    }
+    .split-pane {
+        width: 100%;
+        height: 50%;
+        border-right: none;
+    }
+    .pane-left {
+        border-bottom: 1px solid #000000;
+    }
+    .pane-left-fixed {
+        flex: 0 0 20%;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #000000;
+        padding: 20px;
+    }
+    .pane-right-content, .pane-right-choice {
+        flex: 0 0 80%;
+        width: 100%;
+        padding: 40px 20px;
+    }
+    .choice-container {
+        gap: 30px;
+    }
 }
